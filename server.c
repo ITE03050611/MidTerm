@@ -8,7 +8,7 @@ int main(int argc , char *argv[])
 {
 	int socket_desc, new_socket, c;
 	struct sockaddr_in server, client;
-	char *message,client_num[4];
+	char *message,client_Num[4],reAB[10];
 	socket_desc = socket(AF_INET , SOCK_STREAM , 0);
 	if (socket_desc == -1)
 	{
@@ -26,8 +26,7 @@ int main(int argc , char *argv[])
 	listen(socket_desc , 3);
 	puts("Waiting for incoming connections...");
 	c = sizeof(struct sockaddr_in);
-	new_socket = accept(socket_desc,(struct sockaddr *)&client, (socklen_t*)&c);
-	if(new_socket<0)
+	while(new_socket = accept(socket_desc,(struct sockaddr *)&client, (socklen_t*)&c))
 	{
 		puts("Connection accepted");
 		int i, j, tmp=0, a, b, c, d,randNum, A, B;
@@ -66,7 +65,7 @@ int main(int argc , char *argv[])
 						B++;
 			if (A==4)
 			{
-				message = "Congratulations! You're answer is Right!";
+				message = "correct";
 				write(new_socket, message, strlen(message)+1);
 				return 1;
 			}
